@@ -2,38 +2,7 @@ body{
   margin: 0;
   padding: 0;
 }
-/*
-.buttonHead{
-  width: 100%;
-  background-color: rgb(255, 255, 255);
-  border: none; 
-}
 
-.buttonHead:hover{
- background-color: rgb(236, 236, 236);
-
-}
-
-
-
-.inputHead{
-  border: none; 
-    padding: 0; 
-    outline: none; 
-    
-}
-
-.thead{
-  border-collapse: collapse; 
-    border-spacing: 0
-}
-
-td, th {
-  padding: 0; 
-  border: solid 1px gray;
-  
-  
-}*/
 
 .thead_th{
   text-align: center;
