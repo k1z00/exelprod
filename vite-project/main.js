@@ -1,11 +1,13 @@
-const headTab = [ "","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z",];
+const headTab = [ "","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y"];
 
 document.addEventListener("DOMContentLoaded", () => {
   const spreadsheet = document.getElementById("table");
-  const rows = 13;
+  const rows = 16;
   const cols = headTab.length;
 
   const head = spreadsheet.createTHead();
+  head.classList.add('thead_main')
+
   const headerRow = head.insertRow();
 
   headTab.map((head) => {
@@ -21,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const row = body.insertRow();
 
     for (let j = 0; j < cols; j++) {
-      let count = 0;
       const cell = row.insertCell();
       cell.contentEditable = true;
       cell.draggable = true;

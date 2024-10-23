@@ -7,31 +7,33 @@ th{
 }
 th, td {
   border: 1px solid #ccc;
-  width: 3%;
-  height: 3px;
   text-align: left;
-}
-
-td {
+}td {
   cursor: text;
 }
+
 td:hover {
   background-color: #f0f0f0;
 }
 
+.thead_main{
+  width: 100%;
+}
+
+
 .thead_th{
   text-align: center;
- 
   font-weight: 400;
   height: 20px;
   font-size: 15px;
+  width: 4%;
+  
 }
 
 .container_exel{
   max-width: 90%;
   margin: auto;
   margin-top: 200px;
-
 }
 
 .title_exel{
@@ -39,7 +41,7 @@ td:hover {
  background-color: #008000;
  color: #f0f0f0;
  font-size: 25px;
- padding: 8px;
+
 }
 
 table {
@@ -49,9 +51,12 @@ table {
 
 
 
-
+.thead_start{
+  width: 15px;
+}
 
 .tbody_start{
   text-align: center;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; 
+  width: 15px;
 }
