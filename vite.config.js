@@ -1,3 +1,3 @@
 export default {
-    base: '/exelprod/ a'
+    base: '/exelprod/'
 }
