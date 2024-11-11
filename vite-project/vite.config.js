@@ -1,3 +1,3 @@
 export default {
-    base: '/exelprod/'
+    base: '/exelprod/tree/main/vite-project/'
 }
