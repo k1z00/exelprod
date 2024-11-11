@@ -1,72 +1,95 @@
-const headTab = [ "","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y"];
-
 document.addEventListener("DOMContentLoaded", () => {
-  const spreadsheet = document.getElementById("table");
-  const rows = 16;
-  const cols = headTab.length;
+  const buttonAddRow = document.getElementById("button_row");
+  const buttonAddColumn = document.getElementById("button_column");
 
-  const head = spreadsheet.createTHead();
-  head.classList.add('thead_main')
+  const headTab = ["", "1", "2", "3", "4"];
+  const bodyTab = ["", "1"];
 
-  const headerRow = head.insertRow();
+  function addRowOrColumn(isRow) {
+    const headTabLength = headTab.length;
+    const newValue = headTabLength.toString();
+    if (isRow) {
+      headTab.push(newValue);
+    } else {
+      bodyTab.push(newValue);
+    }
+    renderTable();
+  }
 
-  headTab.map((head) => {
-    const th = document.createElement("th");
-    th.textContent = head;
-    head[0] ? th.classList.add("thead_th") : th.classList.add("thead_start");
-    headerRow.appendChild(th);
-    return th;
-  });
+  
+  buttonAddRow.addEventListener("click", () => addRowOrColumn(true));
+  buttonAddColumn.addEventListener("click", () => addRowOrColumn(false));
 
-  const body = spreadsheet.createTBody();
-  for (let i = 0; i < rows; i++) {
-    const row = body.insertRow();
+  function renderTable() {
+    const spreadsheet = document.getElementById("table");
+    spreadsheet.innerHTML = "";
 
-    for (let j = 0; j < cols; j++) {
-      const cell = row.insertCell();
-      cell.contentEditable = true;
-      cell.draggable = true;
+    const rows = bodyTab.length;
+    const cols = headTab.length;
 
-      if (j === 0) {
-        cell.textContent = i + 1;
-        cell.contentEditable = false;
-        cell.classList.add("tbody_start");
-      } else {
-        cell.textContent = "";
-      }
+    const head = spreadsheet.createTHead();
+    head.classList.add("thead_main");
 
-      cell.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("text/plain", event.target.textContent);
-        event.target.classList.add("selected");
-      });
+    const headerRow = head.insertRow();
 
-      cell.addEventListener("dragend", (event) => {
-        event.target.classList.remove("selected");
-      });
+    headTab.forEach((head) => {
+      const th = document.createElement("th");
+      th.textContent = head;
+      head[0] ? th.classList.add("thead_th") : th.classList.add("thead_start");
+      headerRow.appendChild(th);
+    });
 
-      cell.addEventListener("dragover", (event) => {
-        event.preventDefault(); // Prevent default to allow drop
-        event.target.classList.add("dropzone");
-      });
+    const body = spreadsheet.createTBody();
+    for (let i = 0; i < rows; i++) {
+      const row = body.insertRow();
 
-      cell.addEventListener("dragleave", (event) => {
-        event.target.classList.remove("dropzone");
-      });
+      for (let j = 0; j < cols; j++) {
+        const cell = row.insertCell();
+        cell.contentEditable = true;
+        cell.draggable = true;
 
-      cell.addEventListener("drop", (event) => {
-        event.preventDefault();
-        const data = event.dataTransfer.getData("text/plain");
-        const droppedCell = event.target;
-        if (droppedCell !== null) {
-          droppedCell.textContent = data; // Set data to the target cell
+        if (j === 0) {
+          cell.textContent = i + 1;
+          cell.contentEditable = false;
+          cell.classList.add("tbody_start");
+        } else {
+          cell.textContent = "";
         }
-        event.target.classList.remove("dropzone");
-      });
 
-      cell.addEventListener("dblclick", () => {
-        if (j === 0) return;
-        cell.textContent = "";
-      });
+        cell.addEventListener("dragstart", (event) => {
+          event.dataTransfer.setData("text/plain", event.target.textContent);
+          event.target.classList.add("selected");
+        });
+
+        cell.addEventListener("dragend", (event) => {
+          event.target.classList.remove("selected");
+        });
+
+        cell.addEventListener("dragover", (event) => {
+          event.preventDefault(); // Prevent default to allow drop
+          event.target.classList.add("dropzone");
+        });
+
+        cell.addEventListener("dragleave", (event) => {
+          event.target.classList.remove("dropzone");
+        });
+
+        cell.addEventListener("drop", (event) => {
+          event.preventDefault();
+          const data = event.dataTransfer.getData("text/plain");
+          const droppedCell = event.target;
+          if (droppedCell !== null) {
+            droppedCell.textContent = data; // Set data to the target cell
+          }
+          event.target.classList.remove("dropzone");
+        });
+
+        cell.addEventListener("dblclick", () => {
+          if (j === 0) return;
+          cell.textContent = "";
+        });
+      }
     }
   }
+  renderTable();
 });

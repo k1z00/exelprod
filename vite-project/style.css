@@ -10,6 +10,8 @@ th, td {
   text-align: left;
 }td {
   cursor: text;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 td:hover {
@@ -38,9 +40,9 @@ td:hover {
 
 .title_exel{
  margin-bottom: 0px;
- background-color: #008000;
  color: #f0f0f0;
  font-size: 25px;
+ padding: 7px;
 
 }
 
@@ -52,11 +54,15 @@ table {
 
 
 .thead_start{
-  width: 15px;
+  width: 1%;
 }
 
 .tbody_start{
   text-align: center;
   background-color: #f0f0f0; 
-  width: 15px;
+ width: 1%;
+}
+
+.head_exel{
+  background-color: #008000;
 }
